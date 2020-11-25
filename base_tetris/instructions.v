@@ -8,6 +8,7 @@ module instructions(clk, rst, curr_command, out_data);
 reg [2 * WIDTH-1:0] mem [0:INSTRACTION_NUMBERS-1];
 wire [2 * WIDTH-1:0] memory = mem[curr_command];
 wire [WIDTH-1:0] prng_data;
+reg [WIDTH-1:0] data;
 reg enable;
 
 initial begin
@@ -25,13 +26,12 @@ linear_congruential_generator #(
 wire [2 * WIDTH-1:0] memory = mem[curr_command];
 casez(memory)
     {WIDTH{1'b0}, WIDTH{1'bz}}: begin
-        out_data <= {WIDTH{1'b0}, prng_data % 3}; // 3 is number of diff. figurines
+        data <= prng_data % 3; // 3 is number of diff. figurines
         enable <= 1'b1;
     end
     default: begin
-        out_data <= memory;
         enable <= 1'b0;
     end
 endcase
-
+assign out_data = {memory[2*WIDTH-1:1*WIDTH], data}
 endmodule
