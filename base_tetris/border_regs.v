@@ -30,6 +30,7 @@ assign Q_fig = (figure == 8'b00000001);
 assign I_fig = (figure == 8'b00000010);
 
 always @(*) begin
+    // O, Z, T, I, S, L - standart?
     if (T_fig) begin
         rst_x_value[4 * WIDTH - 1: 3 * WIDTH] = 0;
         rst_y_value[4 * WIDTH - 1: 3 * WIDTH] = 0;
@@ -40,7 +41,7 @@ always @(*) begin
         rst_x_value[1 * WIDTH - 1: 0 * WIDTH] = 1;
         rst_y_value[1 * WIDTH - 1: 0 * WIDTH] = 1;
     end
-    else if (Q_fig) begin
+    else if (Q_fig) begin // What is Q_fig?
         rst_x_value[4 * WIDTH - 1: 3 * WIDTH] = 0;
         rst_y_value[4 * WIDTH - 1: 3 * WIDTH] = 0;
         rst_x_value[3 * WIDTH - 1: 2 * WIDTH] = 1;

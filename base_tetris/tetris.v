@@ -26,7 +26,8 @@ adder #(.WIDTH(WIDTH))
                     .x(instr_addr), .y(8'b1), .out(new_instr_addr));
 
 instructions #(.WIDTH(WIDTH), .INSTRACTION_NUMBERS(INSTRACTION_NUMBERS)) 
-              _inst(.rst(rst), .curr_command(instr_addr), 
+              _inst(.clk(clk), .rst(rst),
+                    .curr_command(instr_addr), 
                     .out_data(instr));
 
 assign action = instr[2*WIDTH-1:WIDTH];
